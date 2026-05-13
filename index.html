@@ -30,7 +30,7 @@
             text-align: center;
         }
     </style> -->
-    <!-- ========================================================= -->
+<!-- ========================================================= -->
     <style>
         /* Global & Button Styles */
         html, body { margin: 0; padding: 0; overflow-x: hidden; font-family: Google Sans, Noto, Roboto, Helvetica Neue, sans-serif; color: #244376; background-color: #ffff99; }
@@ -74,6 +74,7 @@
         <img src="images/sugarlump_experience_AR_assets-01.png" style="width: 350px; max-width: 100%; height: auto;">
     </div>
 
+    <!-- Hidden Main Page AR Model -->
     <model-viewer id="reveal" src="Models/900_grandparents_100cm_new_images.glb?sound=Sound/grandparent_goodies_mix.mp3" ar ar-modes="scene-viewer webxr quick-look" ios-src="Models/900_GRANDPARENTS_100cm_New_Images_Output.usdz"></model-viewer>
     
     <p style="text-align:center; font-family: 'Chalet LondonNineteenEighty Regular'; font-weight: bold; color: #000099; font-size: 14px;">make sure Wi-Fi and sound is on!</p>
@@ -147,22 +148,24 @@
             .rec-img { height: 24px; vertical-align: middle; margin-left: 8px; }
         </style></head>
         <body>
-            <!-- Standard straight quotes and 'ar' attributes restored -->
+            <!-- Added autoplay to ensure animations play immediately upon reveal -->
             <model-viewer id="m" 
                 src="Models/900_grandparents_100cm_new_images.glb" 
                 poster="images/Grandparent Goodies Poster.png" 
                 ar ar-modes="scene-viewer webxr quick-look" 
-                reveal="auto" loading="eager" interaction-prompt="none" camera-controls>
+                reveal="manual" autoplay loading="eager" interaction-prompt="none" camera-controls>
             </model-viewer>
             <audio id="music" src="Sound/grandparent_goodies_mix.mp3" loop></audio>
             <div class="instr">
                 <p>SCREEN RECORD iOS: Swipe down top-right & tap <img src="images/iPhone Record Button 9.png" class="rec-img"></p>
                 <p>ANDROID: Swipe down twice & tap "Screen Record"</p>
+                <!-- Added m.dismissPoster() to clear the image immediately -->
                 <button id="ctrl" class="play-btn" onclick="
                     const a=document.getElementById('music'); 
                     const m=document.getElementById('m'); 
                     if(a.paused){
                         a.play(); 
+                        m.dismissPoster();
                         this.innerText='  ❚❚   PAUSE'; 
                         this.style.background='#ff69b4';
                         if(m.canActivateAR) { m.activateAR(); }
