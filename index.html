@@ -169,12 +169,13 @@
                     const a=document.getElementById('music'); 
                     const m=document.getElementById('m'); 
                     if(a.paused){
-                        a.play(); 
-                        m.play(); // Starts GLB animation
-                        m.dismissPoster();
-                        this.innerText='  ❚❚   PAUSE'; 
-                        this.style.background='#ff69b4';
-                        if(m.canActivateAR) { m.activateAR(); }
+    a.play(); 
+    m.play(); 
+    m.dismissPoster();
+    this.innerText='  ❚❚   PAUSE'; 
+    this.style.background='#ff69b4';
+    // The AR camera will no longer launch automatically
+}
                     }else{
                         a.pause(); 
                         m.pause(); // Stops GLB animation
